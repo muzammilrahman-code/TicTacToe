@@ -3,8 +3,8 @@ let resetBtn = document.querySelector("#reset-btn");
 let winnerMsg = document.querySelector("#msg");
 let newBtn = document.querySelector("#new-btn");
 let msgHead = document.querySelector(".head");
-let playerTurn1 = document.querySelector(".turn1");
-let playerTurn2 = document.querySelector(".turn2");
+// let playerTurn1 = document.querySelector(".turn1");
+// let playerTurn2 = document.querySelector(".turn2");
 
 let turnx = true;
 let count = 0;
@@ -61,7 +61,7 @@ boxes.forEach((box) => {
 
 
 const gameOver = () => {
-    winnerMsg.innerText = "Game Was  Draw";
+    winnerMsg.innerText = "Game Was Draw";
     msgHead.classList.remove("hide");
     disableBtn();
 }
@@ -82,7 +82,11 @@ const enableBtn = () => {
 }
 
 const showWinner = (winner) => {
-    winnerMsg.innerText = `Congratulations, Winner is ${winner}`;
+     if (winner === "X") {
+        winnerMsg.innerText = "Congratulations, Player 1 wins!";
+    } else if (winner === "O") {
+        winnerMsg.innerText = "Congratulations, Player 2 wins!";
+    }
     msgHead.classList.remove("hide");
     disableBtn();
 }
@@ -99,15 +103,13 @@ const checkWinner = () => {
        if(pos1Val != "" && pos2Val != "" && pos3Val != ""){
             if(pos1Val === pos2Val && pos2Val === pos3Val){
                 // console.log("Winner", pos1Val);
-               if(pos1Val == "X"){
-                  showWinner("player 1");
-               }else{
-                  showWinner("player 2");
-               }
+               showWinner(pos1Val); // Display the winner as "X" or "O"
+               return true; // Winner found
                 
             }
        }
     }
+    return false;
 };
 
 resetBtn.addEventListener("click", resetGame);
