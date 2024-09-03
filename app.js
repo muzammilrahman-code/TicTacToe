@@ -26,7 +26,7 @@ const resetGame = () => {
     count = 0;
     enableBtn();
     msgHead.classList.add("hide");
-
+    boxes.forEach(box => box.classList.remove("winning-box"));  
 }
 
 boxes.forEach((box) => {
@@ -81,7 +81,7 @@ const enableBtn = () => {
     }
 }
 
-const showWinner = (winner) => {
+const showWinner = (winner,pattern) => {
      if (winner === "X") {
         winnerMsg.innerText = "Congratulations, Player 1 wins!";
     } else if (winner === "O") {
@@ -89,6 +89,10 @@ const showWinner = (winner) => {
     }
     msgHead.classList.remove("hide");
     disableBtn();
+    highlightWinningPattern(pattern);
+}
+const highlightWinningPattern = (pattern) => {                                   
+    pattern.forEach(index => boxes[index].classList.add("winning-box"));
 }
 
 const checkWinner = () => {
@@ -103,7 +107,7 @@ const checkWinner = () => {
        if(pos1Val != "" && pos2Val != "" && pos3Val != ""){
             if(pos1Val === pos2Val && pos2Val === pos3Val){
                 // console.log("Winner", pos1Val);
-               showWinner(pos1Val); // Display the winner as "X" or "O"
+               showWinner(pos1Val,pattern); // Display the winner as "X" or "O"
                return true; // Winner found
                 
             }
