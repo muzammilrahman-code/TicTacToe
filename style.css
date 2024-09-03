@@ -105,11 +105,6 @@ body{
     border: 3px solid rgb(180, 19, 19); /* Crimson */
     background-color: rgba(143, 30, 22, 0.7); /* FloralWhite with slight transparency */
 }
-@media screen and (max-width: 400px){
-    #reset-btn{
-        position: absolute;
-        bottom: 80px;
-        left: 120px;
-    }
+
 }
 
